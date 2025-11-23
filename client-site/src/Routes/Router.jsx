@@ -9,7 +9,7 @@ import Register from '../Pages/Register/Register'
 const Router = createBrowserRouter([
     {
         path:"/",
-        element:<Feed/>
+        element:<App/>
     },
     {
         path:'/login',

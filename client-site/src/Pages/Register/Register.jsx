@@ -4,11 +4,40 @@ import shape2 from "../../assets/images/shape2.svg";
 import shape3 from "../../assets/images/shape3.svg";
 import registrationBanner from "../../assets/images/registration1.png";
 import logo from '../../assets/images/logo.svg'
+import { useAuthStore } from "../../store/useAuthStore";
+import { Link } from "react-router-dom";
 
 const Register = () => {
+
+    const {signup , isSigningUp}=useAuthStore();
+
+
+
+    const HandleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission logic here
+
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const confirmPass = e.target.confirmPass.value;
+
+        const formData ={
+            fullName:name,
+            email,
+            password
+        }
+
+        signup(formData);
+
+        console.log({ name, email, password, confirmPass });
+
+
+
+    }
     return (
         <div className="min-h-screen bg-[#F0F2F5] flex items-center justify-center relative overflow-hidden px-6">
-   
+
             <img src={shape1} className="w-40 absolute top-0 left-0 opacity-70" />
             <img src={shape2} className="w-72 absolute top-0 right-0 opacity-70" />
             <img src={shape3} className="w-72 absolute bottom-0 right-10 opacity-70" />
@@ -16,7 +45,7 @@ const Register = () => {
 
             <div className="flex w-full max-w-6xl items-center gap-10 pl-12 relative z-10 pt-7">
 
-         
+
                 <div className="hidden lg:flex w-1/2 justify-center">
                     <img src={registrationBanner} className="w-[450px]" />
                 </div>
@@ -31,7 +60,7 @@ const Register = () => {
                         <p className="text-xs text-center">Get Started Now</p>
 
 
-           
+
                         <h2 className="text-center text-lg -mt-1 font-semibold text-gray-800">
                             Registration
                         </h2>
@@ -46,53 +75,67 @@ const Register = () => {
                         <span className="text-sm font-medium">Register with Google</span>
                     </button>
 
-              
+
                     <div className="flex items-center gap-3">
                         <span className="flex-1 h-px bg-gray-200"></span>
                         <span className="text-[10px] text-gray-400">OR</span>
                         <span className="flex-1 h-px bg-gray-200"></span>
                     </div>
 
-                  
+
                     <div className="space-y-2">
-                        <input
-                            type="text"
-                            placeholder="Full Name"
-                            className="input input-bordered rounded-xl w-full text-sm h-8"
-                        />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            className="input input-bordered rounded-xl w-full text-sm h-8"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            className="input input-bordered rounded-xl w-full text-sm h-8"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Repeat Password"
-                            className="input input-bordered rounded-xl w-full text-sm h-8"
-                        />
+                        <form onSubmit={HandleSubmit}>
+
+                            <input
+                                name="name"
+                                type="text"
+                                placeholder="Full Name"
+                                className="input input-bordered rounded-xl mb-1 w-full text-sm h-8"
+                            />
+                            <input
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                                className="input input-bordered rounded-xl mb-1 w-full text-sm h-8"
+                            />
+                            <input
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                className="input input-bordered rounded-xl mb-1 w-full text-sm h-8"
+                            />
+                            <input
+                                name="confirmPass"
+                                type="password"
+                                placeholder="Repeat Password"
+                                className="input input-bordered rounded-xl mb-1 w-full text-sm h-8"
+                            />
+
+                            <div className="flex items-center gap-2">
+                                <input type="checkbox" className="checkbox checkbox-primary mb-2 mt-1 checkbox-sm" />
+                                <span className="text-xs text-gray-600">
+                                    I agree to terms & conditions
+                                </span>
+                            </div>
+
+
+                            <button className="btn bg-[#1890FF] text-white w-full rounded-xl text-sm h-8">
+                                Sign Up
+                            </button>
+
+                        </form>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                        <input type="checkbox" className="checkbox checkbox-primary checkbox-sm" />
-                        <span className="text-xs text-gray-600">
-                            I agree to terms & conditions
-                        </span>
-                    </div>
 
-                    
-                    <button className="btn bg-[#1890FF] text-white w-full rounded-xl text-sm h-8">
-                        Login now
-                    </button>
 
-                   
+
                     <p className="text-center text-[11px] text-gray-500">
-                        Don't have an account?
-                        <span className="text-blue-500 cursor-pointer"> Create New Account</span>
+                        Already have an account?
+                        <span className="text-blue-500 cursor-pointer"> 
+                            <Link to={'/login'}>
+                            Login Now
+                            </Link>
+                        </span>
                     </p>
                 </div>
             </div>

@@ -1,10 +1,13 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
+import Home from './Home'
+
 
 const Feed = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
+      <Home />
     </div>
   )
 }

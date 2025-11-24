@@ -57,29 +57,31 @@ const PostMaker = () => {
         try {
             const payload = {
                 user: authUser?._id,
+                userFullName: authUser?.fullName,   
                 text: postText,
             };
 
             if (uploadedImageUrl) {
-                payload.images = [uploadedImageUrl]; // send as array
+                payload.images = [uploadedImageUrl];
             }
 
             const { data } = await axiosInstance.post("posts/createPost", payload, {
                 headers: { "Content-Type": "application/json" },
             });
 
-            console.log("Post saved:", data);
             toast.success("Uploaded");
 
             // Reset fields
             setPostText("");
             setUploadedImageUrl("");
             setSelectedImage(null);
+
         } catch (error) {
             console.error("Post upload failed:", error);
             toast.error("Upload failed");
         }
     };
+
 
     return (
         <div className="w-full py-4">

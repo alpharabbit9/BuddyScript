@@ -5,6 +5,7 @@ import shape3 from "../../assets/images/shape3.svg";
 import loginBanner from "../../assets/images/login.png"
 import logo from '../../assets/images/logo.svg'
 import { useAuthStore } from '../../store/useAuthStore';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -114,7 +115,11 @@ const Login = () => {
 
             <p className="text-center text-[11px] text-gray-500">
               Don't have an account?
-              <span className="text-blue-500 cursor-pointer"> Create New Account</span>
+              <span className="text-blue-500 cursor-pointer">
+                 <Link to={'/register'}>
+                 Create New Account
+                 </Link>
+                 </span>
             </p>
           </div>
         </div>

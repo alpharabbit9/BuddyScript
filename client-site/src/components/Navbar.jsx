@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Home, Settings, Bell, MessageSquare, Search, X } from 'lucide-react';
 import logo from '../assets/images/logo.svg';
+import { useAuthStore } from '../store/useAuthStore';
 
 const Navbar = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const {authUser,logout} = useAuthStore()
 
   return (
     <div className="bg-white shadow-sm border-b border-gray-200 px-3 py-2 sticky top-0 z-50">
@@ -65,13 +67,13 @@ const Navbar = () => {
               >
                 <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
                   <img
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    src={authUser.profilePic || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <span className="text-sm font-medium text-gray-700">
-                  Dylan Field
+                  {authUser?.fullName}
                 </span>
                 <svg
                   className="w-4 h-4 text-gray-500"
@@ -101,7 +103,7 @@ const Navbar = () => {
                   <a className="py-2">Settings</a>
                 </li>
                 <li>
-                  <a className="py-2 text-red-600">Logout</a>
+                  <a onClick={() =>{logout()}} className="py-2 text-red-600">Logout</a>
                 </li>
               </ul>
             </div>

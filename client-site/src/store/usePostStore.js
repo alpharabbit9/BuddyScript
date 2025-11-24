@@ -1,54 +1,47 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 
-export const usePostStore = create((set) => ({
+export const usePostStore = create((set, get) => ({
     posts: [],
     loading: false,
 
-   getAllPosts: async () => {
-    set({ loading: true });
+    // Fetch all posts
+    getAllPosts: async () => {
+        set({ loading: true });
 
-    try {
-        const { data } = await axiosInstance.get("posts/getAllPost");
-
-        const sorted = data.posts.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-
-        set({ posts: sorted, loading: false });
-
-    } catch (error) {
-        console.error(error);
-        set({ loading: false });
-    }
-},
-
-    createPost: async (newPost) => {
         try {
-            const res = await fetch("http://localhost:5000/api/posts/create", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newPost),
-            });
+            const { data } = await axiosInstance.get("posts/getAllPost");
 
-            const data = await res.json();
+            const sorted = data.posts.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            );
 
-            set((state) => ({
-                posts: [data.post, ...state.posts]   // instantly update feed
-            }));
+            set({ posts: sorted, loading: false });
 
         } catch (error) {
-            console.log(error);
+            console.error(error);
+            set({ loading: false });
         }
     },
 
-     likePost: async (postId, userId) => {
+    // Create post and auto-refresh
+    createPost: async (newPost) => {
         try {
-            const res = await axiosInstance.patch(`posts/${postId}/like`, { userId });
+            set({ loading: true });
 
-            return res.data.likes; // updated likes array
-        } catch (err) {
-            console.error("Like error:", err);
+            const { data } = await axiosInstance.post(
+                "posts/create",
+                newPost
+            );
+
+            // Re-fetch posts to stay consistent
+            await get().getAllPosts();
+
+        } catch (error) {
+            console.error(error);
+        } finally {
+            set({ loading: false });
         }
-    }
+    },
+
 }));

@@ -91,7 +91,7 @@ const PostMaker = () => {
                     <div className="flex items-start gap-3 mb-4">
                         <div className="flex-shrink-0">
                             <img
-                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+                                src={authUser?.profilePic || "https://i.pravatar.cc/100"}
                                 alt="User Avatar"
                                 className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-gray-200"
                             />

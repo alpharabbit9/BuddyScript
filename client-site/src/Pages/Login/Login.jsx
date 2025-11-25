@@ -62,13 +62,7 @@ const Login = () => {
             </div>
 
 
-            <button className="w-full border rounded-xl py-2 flex items-center justify-center gap-2 hover:bg-gray-50 transition">
-              <img
-                src="https://www.svgrepo.com/show/475656/google-color.svg"
-                className="w-4"
-              />
-              <span className="text-sm font-medium">Register with Google</span>
-            </button>
+           
 
 
             <div className="flex items-center gap-3">

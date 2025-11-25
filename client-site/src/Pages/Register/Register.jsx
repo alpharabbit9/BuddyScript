@@ -57,7 +57,7 @@ const Register = () => {
 
     return (
         <div className="min-h-screen bg-[#F0F2F5] flex items-center justify-center relative overflow-hidden px-6">
-            
+
             <img src={shape1} className="w-40 absolute top-0 left-0 opacity-70" />
             <img src={shape2} className="w-72 absolute top-0 right-0 opacity-70" />
             <img src={shape3} className="w-72 absolute bottom-0 right-10 opacity-70" />
@@ -115,12 +115,28 @@ const Register = () => {
                             />
 
                             {/* Upload Profile Picture */}
-                            <input
-                                type="file"
-                                accept="image/*"
-                                className="input input-bordered rounded-xl mb-2 w-full text-sm h-8"
-                                onChange={(e) => setProfilePic(e.target.files[0])}
-                            />
+                            <label className="flex flex-col w-full cursor-pointer">
+                                <span className="text-sm font-medium mb-1">Upload Profile Picture</span>
+
+                                <div className="flex items-center justify-between border mb-3 border-gray-300 rounded-xl px-3 py-2 bg-white hover:bg-gray-50 transition">
+                                    <span className="text-gray-500 text-sm">
+                                        {profilePic ? profilePic.name : "Choose an image..."}
+                                    </span>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5 text-gray-400"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M4 12l1.41-1.41M4 12l1.41 1.41M20 12l-1.41-1.41M20 12l-1.41 1.41M8 7h8m-5 4h2" />
+                                    </svg>
+                                </div>
+
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={(e) => setProfilePic(e.target.files[0])}
+                                />
+                            </label>
 
                             <button
                                 className="btn bg-[#1890FF] text-white w-full rounded-xl text-sm h-8"

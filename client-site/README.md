@@ -1,16 +1,238 @@
-# React + Vite
+BuddyScript – MERN Social Media App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BuddyScript is a modern, fully-featured social media application built using the MERN stack with a fast Vite + React 19 frontend and a Node.js/Express + MongoDB backend.
+It includes authentication, posting, comments, likes, profile management, news feed, and real-time UI updates using Zustand.
 
-Currently, two official plugins are available:
+🚀 Features
+🔐 Authentication
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Login / Register using email & password
 
-## React Compiler
+Google Login (Firebase Auth)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+JWT-based authentication
 
-## Expanding the ESLint configuration
+Protected routes on frontend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👤 User Profile
+
+Upload profile picture
+
+Edit name, bio, email
+
+View posts by user
+
+Persistent user session storage
+
+📝 Posts
+
+Create posts with text & images
+
+Upload multiple images
+
+Real-time feed update (Zustand + optimistic updates)
+
+Infinite scroll-ready structure
+
+❤️ Likes & Comments
+
+Like/unlike posts
+
+Comment on posts
+
+Auto-refresh and instant UI feedback
+
+MongoDB relational population with user data
+
+📰 Feed
+
+Sorted by newest using timestamps
+
+Smooth animations using Framer Motion
+
+Scrolling with Lenis smooth scroll
+
+⚡ State Management
+
+Global state using Zustand
+
+Dedicated stores for auth, posts, and UI
+
+Persistent login state
+
+🎨 Modern UI
+
+Tailwind CSS v4
+
+DaisyUI components
+
+Responsive, clean, mobile-first design
+
+🛠️ Tech Stack
+Frontend
+
+React 19
+
+Vite
+
+TailwindCSS 4
+
+DaisyUI
+
+Zustand
+
+Axios
+
+Firebase Auth
+
+Lucide Icons
+
+React Router DOM 7
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB + Mongoose
+
+BcryptJS for hashing
+
+JWT for authentication
+
+Multer (image upload)
+
+Cloudinary (optional for image storage)
+
+
+
+
+📦 Frontend package.json Overview
+{
+  "name": "client-site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "axios": "^1.13.2",
+    "firebase": "^12.6.0",
+    "framer-motion": "^12.23.24",
+    "lenis": "^1.3.15",
+    "localforage": "^1.10.0",
+    "lucide-react": "^0.554.0",
+    "match-sorter": "^8.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^7.9.6",
+    "sort-by": "^1.2.0",
+    "tailwindcss": "^4.1.17",
+    "zustand": "^5.0.8"
+  }
+}
+
+
+📁 Project Structure
+BuddyScript/
+│
+├── client-site/         # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── store/       # Zustand stores
+│   │   ├── lib/
+│   │   ├── assets/
+│   │   └── main.jsx
+│   └── index.html
+│
+└── server-site/         # Node.js backend
+    ├── src/
+    │   ├── models/
+    │   ├── routes/
+    │   ├── controllers/
+    │   ├── middleware/
+    │   └── index.js     # Main server file
+    └── package.json
+
+
+
+
+
+▶️ Running the App
+Start Frontend
+cd client-site
+npm install
+npm run dev
+
+Start Backend
+cd server-site
+npm install
+npm run dev
+
+Backend runs at:
+http://localhost:5000
+
+Frontend runs at:
+http://localhost:5173
+
+
+🌍 Deployment Notes
+
+
+Vite builds into /dist
+
+
+For Vercel: ensure server index.js is in root or configured via vercel.json
+
+
+API routes must follow:
+/api/auth/*, /api/posts/*, etc.
+
+
+
+🪲 Known Issues / Fixes
+
+
+If Vercel shows 404 NOT_FOUND, you must:
+
+
+Keep backend entry file at root (or configure builds in vercel.json)
+
+
+Use "type": "module"
+
+
+Set proper API paths /api/...
+
+
+
+
+
+🤝 Contributing
+PRs and suggestions are welcome!
+You can fork, improve UI, add features like:
+
+
+Realtime chat (Socket.io)
+
+
+Story feature
+
+
+Notifications
+
+
+Friend requests
+
+
+
+📜 License
+MIT License – Free for personal and commercial use.
